@@ -1,0 +1,68 @@
+<ng-template #content1 let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Add employee list</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<app-add-form></app-add-form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
+
+<ng-template #content2 let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Edit employee list({{index+1}})</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<app-edit-form></app-edit-form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
+
+
+<div class="row">
+    <div class="col-11">
+        <h1 class="mt-3">Employee lists</h1>
+    </div>
+    <div class="col-1 mt-4">
+        <button class="btn btn-success" style="justify-content: end;" (click)="openAdd(content1)" >Add</button>
+    </div>
+</div>
+<hr>
+<table class="table table-border">
+   <thead>
+        <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Mail</th>
+            <th>Tel</th>
+            <th>Pic</th>
+            <th>Edit</th>
+            <th>Del</th>
+        </tr>
+   </thead>
+    <tbody *ngIf="employees; else n;">
+     
+        <tr *ngFor="let employeeEl of employees; let i = index">
+            <th>{{i+1}}</th>
+            <th>{{employeeEl.name}}</th>
+            <th>{{employeeEl.mail}}</th>
+            <th>{{employeeEl.tel}}</th>
+            <th><img src="{{employeeEl.picPath}}" alt="employeePic" style="width: 200px; height: 150px;"></th>
+            <th><button class="btn btn-primary" (click)="openEdit(content2,i)">Edit No. : {{i+1}}</button></th>
+            <th><button class="btn btn-danger" (click)="onDel(i)">Del</button></th>
+        </tr>
+
+    </tbody>
+       
+</table> 
+        <ng-template #n>
+            <h4>No data employee</h4>
+            <p>Please add it </p>
+        </ng-template>
+<hr>

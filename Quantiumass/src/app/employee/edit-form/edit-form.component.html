@@ -1,0 +1,40 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" #e="ngForm">
+    <div class="row">
+        <div class="col-6 form-group">
+            <label for="Name">Name : <span style="color: red;">(*required)</span></label>
+            <input type="text" class="form-control mt-2" id="Name"  
+            ngModel
+                    name="name"
+            required
+            #name="ngModel">
+            <span class="help-block" *ngIf="!name.valid && name.touched" style="color: red;">Please enter a name!</span>
+        </div>
+        
+        <div class="col-6 form-group">
+            <label for="Tel">Tel : </label>
+            <input type="text" class="form-control mt-2" id="Tel" name="tel" ngModel>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-12 form-group">
+            <label for="Email">Email : <span style="color: red;">(*required)</span></label>
+            <input type="email" class="form-control mt-2" id="Email" 
+            ngModel
+                    name="email"
+            required
+            email
+            #email="ngModel">
+        </div>
+    </div>
+    <span class="help-block" *ngIf="!email.valid && email.touched" style="color: red;">Please enter a email!</span>
+    <br>
+    <div class="row">
+        <div class="col-12 form-group">
+            <label for="image">ImageURL : </label>
+            <input type="text" class="form-control mt-2" id="image" name="picPath" ngModel>
+        </div>
+    </div><br>
+    <button class="btn btn-dark" type="submit" [disabled]="!e.valid">Submit.</button>
+    </form>
+</div>
